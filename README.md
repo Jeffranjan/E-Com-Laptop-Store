@@ -1,2 +1,1 @@
-# E-Com-Laptop
-# E-Com-Laptop
+# A E-commerce Full Stack website for Laptops
