@@ -55,27 +55,24 @@ export const addProductFormElements = [
   },
   {
     label: "Category",
-    name: "category",
+    name: "Category",
     componentType: "select",
     options: [
-      { id: "men", label: "Men" },
-      { id: "women", label: "Women" },
-      { id: "kids", label: "Kids" },
-      { id: "accessories", label: "Accessories" },
-      { id: "footwear", label: "Footwear" },
+      { id: "officeLaptop", label: "Office Laptop" },
+      { id: "gaming", label: "Gaming" },
+      { id: "lowBudeget", label: "Low Budget" },
     ],
   },
   {
     label: "Brand",
-    name: "brand",
+    name: "Brand",
     componentType: "select",
     options: [
-      { id: "nike", label: "Nike" },
-      { id: "adidas", label: "Adidas" },
-      { id: "puma", label: "Puma" },
-      { id: "levi", label: "Levi's" },
-      { id: "zara", label: "Zara" },
-      { id: "h&m", label: "H&M" },
+      { id: "hp", label: "HP" },
+      { id: "lenovo", label: "Lenovo" },
+      { id: "dell", label: "Dell" },
+      { id: "asus", label: "Asus" },
+      { id: "apple", label: "apple" },
     ],
   },
   {
@@ -113,23 +110,13 @@ export const shoppingViewHeaderMenuItems = [
     path: "/shop/listing",
   },
   {
-    id: "men",
-    label: "Men",
+    id: "laptops",
+    label: "Laptops",
     path: "/shop/listing",
   },
   {
-    id: "women",
-    label: "Women",
-    path: "/shop/listing",
-  },
-  {
-    id: "kids",
-    label: "Kids",
-    path: "/shop/listing",
-  },
-  {
-    id: "footwear",
-    label: "Footwear",
+    id: "pcs",
+    label: "PCs",
     path: "/shop/listing",
   },
   {
@@ -145,37 +132,31 @@ export const shoppingViewHeaderMenuItems = [
 ];
 
 export const categoryOptionsMap = {
-  men: "Men",
-  women: "Women",
-  kids: "Kids",
+  laptops: "Laptops",
+  pcs: "PCs",
   accessories: "Accessories",
-  footwear: "Footwear",
 };
 
 export const brandOptionsMap = {
-  nike: "Nike",
-  adidas: "Adidas",
-  puma: "Puma",
-  levi: "Levi",
-  zara: "Zara",
-  "h&m": "H&M",
+  hp: "HP",
+  dell: "Dell",
+  lenovo: "Lenovo",
+  asus: "Asus",
+  apple: "Macbook",
 };
 
 export const filterOptions = {
   category: [
-    { id: "men", label: "Men" },
-    { id: "women", label: "Women" },
-    { id: "kids", label: "Kids" },
+    { id: "laptops", label: "Laptops" },
+    { id: "pcs", label: "PCs" },
     { id: "accessories", label: "Accessories" },
-    { id: "footwear", label: "Footwear" },
   ],
   brand: [
-    { id: "nike", label: "Nike" },
-    { id: "adidas", label: "Adidas" },
-    { id: "puma", label: "Puma" },
-    { id: "levi", label: "Levi's" },
-    { id: "zara", label: "Zara" },
-    { id: "h&m", label: "H&M" },
+    { id: "hp", label: "HP" },
+    { id: "dell", label: "Dell" },
+    { id: "lenovo", label: "Lenovo" },
+    { id: "asus", label: "Asus" },
+    { id: "apple", label: "Apple" },
   ],
 };
 

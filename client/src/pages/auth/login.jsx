@@ -56,6 +56,7 @@ function AuthLogin() {
         setFormData={setFormData}
         onSubmit={onSubmit}
       />
+     
     </div>
   );
 }

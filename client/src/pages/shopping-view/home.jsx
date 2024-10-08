@@ -1,21 +1,15 @@
 import { Button } from "@/components/ui/button";
-import bannerOne from "../../assets/banner-1.webp";
-import bannerTwo from "../../assets/banner-2.webp";
-import bannerThree from "../../assets/banner-3.webp";
+import hpImage from "../../../public/images/hp.png";
+import lenovoImage from "../../../public/images/lenovo.png";
+import dellImage from "../../../public/images/dell.png";
+import asusImage from "../../../public/images/asus.png";
+import appleImage from "../../../public/images/apple.png";
 import {
-  Airplay,
-  BabyIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-  CloudLightning,
-  Heater,
-  Images,
-  Shirt,
-  ShirtIcon,
-  ShoppingBasket,
-  UmbrellaIcon,
-  WashingMachine,
-  WatchIcon,
+  Laptop,
+  PcCase,
+  Mouse,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useEffect, useState } from "react";
@@ -32,20 +26,17 @@ import ProductDetailsDialog from "@/components/shopping-view/product-details";
 import { getFeatureImages } from "@/store/common-slice";
 
 const categoriesWithIcon = [
-  { id: "men", label: "Men", icon: ShirtIcon },
-  { id: "women", label: "Women", icon: CloudLightning },
-  { id: "kids", label: "Kids", icon: BabyIcon },
-  { id: "accessories", label: "Accessories", icon: WatchIcon },
-  { id: "footwear", label: "Footwear", icon: UmbrellaIcon },
+  { id: "laptop", label: "Laptops", icon: Laptop },
+  { id: "pcs", label: "PCs", icon: PcCase },
+  { id: "accessories", label: "Accessories", icon: Mouse },
 ];
 
 const brandsWithIcon = [
-  { id: "nike", label: "Nike", icon: Shirt },
-  { id: "adidas", label: "Adidas", icon: WashingMachine },
-  { id: "puma", label: "Puma", icon: ShoppingBasket },
-  { id: "levi", label: "Levi's", icon: Airplay },
-  { id: "zara", label: "Zara", icon: Images },
-  { id: "h&m", label: "H&M", icon: Heater },
+  { id: "hp", label: "HP", img: hpImage },
+  { id: "lenovo", label: "Lenovo", img: lenovoImage },
+  { id: "dell", label: "Dell", img: dellImage },
+  { id: "asus", label: "Asus", img: asusImage },
+  { id: "apple", label: "Apple", img: appleImage },
 ];
 function ShoppingHome() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -194,7 +185,11 @@ function ShoppingHome() {
                 className="cursor-pointer hover:shadow-lg transition-shadow"
               >
                 <CardContent className="flex flex-col items-center justify-center p-6">
-                  <brandItem.icon className="w-12 h-12 mb-4 text-primary" />
+                  <img
+                    src={brandItem.img}
+                    alt="Brand Icon"
+                    className="w-12 h-12 mb-4"
+                  />
                   <span className="font-bold">{brandItem.label}</span>
                 </CardContent>
               </Card>
