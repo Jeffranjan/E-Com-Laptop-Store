@@ -15,9 +15,21 @@ const shopReviewRouter = require("./routes/shop/review-routes");
 
 const commonFeatureRouter = require("./routes/common/feature-routes");
 
+const path = require("path");
+const envPath = path.resolve(__dirname, "../.env");
+console.log("Looking for .env file at:", envPath);
+require("dotenv").config({ path: envPath });
 
-const db =
-  "mongodb+srv://ranjanguptajeff:Ranjan%407082@cluster0.dhpsf.mongodb.net/db?retryWrites=true&w=majority";
+console.log("Environment variables loaded:", {
+  MONGODB_URI: process.env.MONGODB_URI,
+  PORT: process.env.PORT,
+});
+
+const db = process.env.MONGODB_URI;
+if (!db) {
+  console.error("MONGODB_URI is not defined in environment variables");
+  process.exit(1);
+}
 
 mongoose
   .connect(db)

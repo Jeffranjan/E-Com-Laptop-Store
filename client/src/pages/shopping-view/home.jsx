@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
-import hpImage from "../../../public/images/hp.png";
-import lenovoImage from "../../../public/images/lenovo.png";
-import dellImage from "../../../public/images/dell.png";
-import asusImage from "../../../public/images/asus.png";
-import appleImage from "../../../public/images/apple.png";
+import hpImage from "../../../src/images/hp.png";
+import lenovoImage from "../../../src/images/lenovo.png";
+import dellImage from "../../../src/images/dell.png";
+import asusImage from "../../../src/images/asus.png";
+import appleImage from "../../../src/images/apple.png";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
