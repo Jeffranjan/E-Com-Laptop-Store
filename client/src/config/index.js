@@ -55,24 +55,24 @@ export const addProductFormElements = [
   },
   {
     label: "Category",
-    name: "Category",
+    name: "category",
     componentType: "select",
     options: [
       { id: "officeLaptop", label: "Office Laptop" },
       { id: "gaming", label: "Gaming" },
-      { id: "lowBudeget", label: "Low Budget" },
+      { id: "lowBudget", label: "Low Budget" },
     ],
   },
   {
     label: "Brand",
-    name: "Brand",
+    name: "brand",
     componentType: "select",
     options: [
       { id: "hp", label: "HP" },
       { id: "lenovo", label: "Lenovo" },
       { id: "dell", label: "Dell" },
       { id: "asus", label: "Asus" },
-      { id: "apple", label: "apple" },
+      { id: "apple", label: "Apple" },
     ],
   },
   {
@@ -142,7 +142,7 @@ export const brandOptionsMap = {
   dell: "Dell",
   lenovo: "Lenovo",
   asus: "Asus",
-  apple: "Macbook",
+  apple: "Apple",
 };
 
 export const filterOptions = {
