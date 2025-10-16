@@ -1,4 +1,4 @@
-# Mahadev Computers - MERN Stack Laptop Store
+# Mahadev Computers - MERN Stack Laptop Store By Ranjan Gupta
 
 A comprehensive e-commerce application for selling laptops and computer accessories built with the MERN stack (MongoDB, Express.js, React, Node.js).
 
