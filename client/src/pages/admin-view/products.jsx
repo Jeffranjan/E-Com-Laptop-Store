@@ -51,7 +51,11 @@ function AdminProducts() {
       ? dispatch(
           editProduct({
             id: currentEditedId,
-            formData,
+            // Ensure updated image is sent if a new one was uploaded
+            formData: {
+              ...formData,
+              image: uploadedImageUrl || formData.image,
+            },
           })
         ).then((data) => {
           if (data?.payload?.success) {
@@ -59,6 +63,7 @@ function AdminProducts() {
             setFormData(initialFormData);
             setOpenCreateProductsDialog(false);
             setCurrentEditedId(null);
+            setUploadedImageUrl("");
           }
         })
       : dispatch(
@@ -72,6 +77,7 @@ function AdminProducts() {
             setOpenCreateProductsDialog(false);
             setImageFile(null);
             setFormData(initialFormData);
+            setUploadedImageUrl("");
             toast({
               title: "Product add successfully",
             });
@@ -88,10 +94,18 @@ function AdminProducts() {
   }
 
   function isFormValid() {
-    return Object.keys(formData)
+    const fieldsValid = Object.keys(formData)
       .filter((currentKey) => currentKey !== "averageReview")
       .map((key) => formData[key] !== "")
       .every((item) => item);
+
+    // For new products, ensure an image URL exists before enabling Add
+    if (currentEditedId === null) {
+      return fieldsValid && Boolean(uploadedImageUrl);
+    }
+
+    // For edit, allow submit if fields are valid and either existing or new image is present
+    return fieldsValid && Boolean(uploadedImageUrl || formData.image);
   }
 
   useEffect(() => {
@@ -147,7 +161,7 @@ function AdminProducts() {
               onSubmit={onSubmit}
               formData={formData}
               setFormData={setFormData}
-              buttonText={currentEditedId !== null ? "Edit" : "Add"}
+              buttonText={currentEditedId !== null ? "Save" : "Add"}
               formControls={addProductFormElements}
               isBtnDisabled={!isFormValid()}
             />

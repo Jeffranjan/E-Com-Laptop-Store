@@ -65,7 +65,7 @@ export const addProductFormElements = [
   },
   {
     label: "Brand",
-    name: "brand",
+    name: "Brand",
     componentType: "select",
     options: [
       { id: "hp", label: "HP" },

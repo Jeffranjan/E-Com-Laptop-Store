@@ -83,7 +83,6 @@ function ProductImageUpload({
           className="hidden"
           ref={inputRef}
           onChange={handleImageFileChange}
-          disabled={isEditMode}
         />
         {!imageFile ? (
           <Label
@@ -115,6 +114,16 @@ function ProductImageUpload({
           </div>
         )}
       </div>
+      {/* Simple preview if an uploaded URL is available */}
+      {uploadedImageUrl ? (
+        <div className="mt-3">
+          <img
+            src={uploadedImageUrl}
+            alt="Uploaded preview"
+            className="w-full h-40 object-cover rounded"
+          />
+        </div>
+      ) : null}
     </div>
   );
 }

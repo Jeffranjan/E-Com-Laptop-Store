@@ -16,7 +16,7 @@ const shopReviewRouter = require("./routes/shop/review-routes");
 const commonFeatureRouter = require("./routes/common/feature-routes");
 
 const path = require("path");
-const envPath = path.resolve(__dirname, "../.env");
+const envPath = path.resolve(__dirname, ".env");
 console.log("Looking for .env file at:", envPath);
 require("dotenv").config({ path: envPath });
 
