@@ -6,12 +6,22 @@ const getFilteredProducts = async (req, res) => {
 
     let filters = {};
 
-    if (category.length) {
+    if (category && category.length > 0) {
       filters.category = { $in: category.split(",") };
     }
 
-    if (brand.length) {
-      filters.brand = { $in: brand.split(",") };
+    if (brand && brand.length > 0) {
+      // Convert brand filter to proper case for matching
+      const brandValues = brand.split(",").map((b) => {
+        const lowerBrand = b.toLowerCase();
+        if (lowerBrand === "hp") return "HP";
+        if (lowerBrand === "dell") return "Dell";
+        if (lowerBrand === "lenovo") return "Lenovo";
+        if (lowerBrand === "asus") return "Asus";
+        if (lowerBrand === "apple") return "Apple";
+        return b; // Return original if no match
+      });
+      filters.brand = { $in: brandValues };
     }
 
     let sort = {};
