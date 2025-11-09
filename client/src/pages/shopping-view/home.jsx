@@ -4,6 +4,7 @@ import lenovoImage from "../../../src/images/lenovo.png";
 import dellImage from "../../../src/images/dell.png";
 import asusImage from "../../../src/images/asus.png";
 import appleImage from "../../../src/images/apple.png";
+import Mahadev_computers_banner from "../../../src/assets/Mahadev_computers_banner.png";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -12,7 +13,7 @@ import {
   Mouse,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchAllFilteredProducts,
@@ -53,6 +54,19 @@ function ShoppingHome() {
   const navigate = useNavigate();
   const { toast } = useToast();
 
+  // Default banner images
+  const defaultBanners = useMemo(
+    () => [{ image: Mahadev_computers_banner }],
+    []
+  );
+
+  // Combine database images with default banners, or use defaults if no database images
+  const allSlides = useMemo(() => {
+    return featureImageList && featureImageList.length > 0
+      ? [...featureImageList, ...defaultBanners]
+      : defaultBanners;
+  }, [featureImageList, defaultBanners]);
+
   function handleNavigateToListingPage(getCurrentItem, section) {
     sessionStorage.removeItem("filters");
     const currentFilter = {
@@ -89,12 +103,14 @@ function ShoppingHome() {
   }, [productDetails]);
 
   useEffect(() => {
+    if (allSlides.length === 0) return;
+
     const timer = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % featureImageList.length);
-    }, 15000);
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % allSlides.length);
+    }, 5000);
 
     return () => clearInterval(timer);
-  }, [featureImageList]);
+  }, [allSlides.length]);
 
   useEffect(() => {
     dispatch(
@@ -112,43 +128,62 @@ function ShoppingHome() {
   return (
     <div className="flex flex-col min-h-screen">
       <div className="relative w-full h-[600px] overflow-hidden">
-        {featureImageList && featureImageList.length > 0
-          ? featureImageList.map((slide, index) => (
+        {allSlides && allSlides.length > 0
+          ? allSlides.map((slide, index) => (
               <img
                 src={slide?.image}
                 key={index}
+                alt={`Banner ${index + 1}`}
                 className={`${
                   index === currentSlide ? "opacity-100" : "opacity-0"
                 } absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000`}
               />
             ))
           : null}
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={() =>
-            setCurrentSlide(
-              (prevSlide) =>
-                (prevSlide - 1 + featureImageList.length) %
-                featureImageList.length
-            )
-          }
-          className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/80"
-        >
-          <ChevronLeftIcon className="w-4 h-4" />
-        </Button>
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={() =>
-            setCurrentSlide(
-              (prevSlide) => (prevSlide + 1) % featureImageList.length
-            )
-          }
-          className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/80"
-        >
-          <ChevronRightIcon className="w-4 h-4" />
-        </Button>
+        {allSlides.length > 1 && (
+          <>
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() =>
+                setCurrentSlide(
+                  (prevSlide) =>
+                    (prevSlide - 1 + allSlides.length) % allSlides.length
+                )
+              }
+              className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/80 hover:bg-white z-10"
+            >
+              <ChevronLeftIcon className="w-4 h-4" />
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() =>
+                setCurrentSlide(
+                  (prevSlide) => (prevSlide + 1) % allSlides.length
+                )
+              }
+              className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/80 hover:bg-white z-10"
+            >
+              <ChevronRightIcon className="w-4 h-4" />
+            </Button>
+            {/* Slide indicators */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
+              {allSlides.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-2 h-2 rounded-full transition-all ${
+                    index === currentSlide
+                      ? "bg-white w-8"
+                      : "bg-white/50 hover:bg-white/75"
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </div>
       <section className="py-12 bg-gray-50">
         <div className="container mx-auto px-4">
