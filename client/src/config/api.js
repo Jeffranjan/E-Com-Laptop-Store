@@ -1,6 +1,7 @@
 // API Configuration
 const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://e-com-laptop-store.onrender.com";
 
 export const API_ENDPOINTS = {
   // Auth endpoints
