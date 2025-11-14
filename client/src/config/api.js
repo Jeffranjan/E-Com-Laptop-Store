@@ -1,6 +1,14 @@
 // API Configuration
-const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
+const getApiBaseUrl = () => {
+  const envUrl = import.meta.env.VITE_API_BASE_URL;
+  if (!envUrl) {
+    return "http://localhost:5000/api";
+  }
+  // If URL doesn't end with /api, append it
+  return envUrl.endsWith("/api") ? envUrl : `${envUrl}/api`;
+};
+
+const API_BASE_URL = getApiBaseUrl();
 
 export const API_ENDPOINTS = {
   // Auth endpoints
