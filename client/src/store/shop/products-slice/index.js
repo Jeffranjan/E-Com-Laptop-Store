@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API_ENDPOINTS } from "@/config/api";
 
 const initialState = {
   isLoading: false,
@@ -25,7 +26,7 @@ export const fetchAllFilteredProducts = createAsyncThunk(
     }
 
     const result = await axios.get(
-      `http://localhost:5000/api/shop/products/get?${queryParams}`
+      `${API_ENDPOINTS.SHOP.PRODUCTS.GET_FILTERED}?${queryParams}`
     );
 
     return result?.data;
@@ -35,9 +36,7 @@ export const fetchAllFilteredProducts = createAsyncThunk(
 export const fetchProductDetails = createAsyncThunk(
   "/products/fetchProductDetails",
   async (id) => {
-    const result = await axios.get(
-      `http://localhost:5000/api/shop/products/get/${id}`
-    );
+    const result = await axios.get(API_ENDPOINTS.SHOP.PRODUCTS.GET_DETAILS(id));
 
     return result?.data;
   }

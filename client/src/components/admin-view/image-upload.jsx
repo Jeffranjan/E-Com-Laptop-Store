@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import { Button } from "../ui/button";
 import axios from "axios";
 import { Skeleton } from "../ui/skeleton";
+import { API_ENDPOINTS } from "@/config/api";
 
 function ProductImageUpload({
   imageFile,
@@ -49,10 +50,7 @@ function ProductImageUpload({
     setImageLoadingState(true);
     const data = new FormData();
     data.append("my_file", imageFile);
-    const response = await axios.post(
-      "http://localhost:5000/api/admin/products/upload-image",
-      data
-    );
+    const response = await axios.post(API_ENDPOINTS.ADMIN.PRODUCTS.UPLOAD_IMAGE, data);
     console.log(response, "response");
 
     if (response?.data?.success) {
